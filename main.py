@@ -24,6 +24,7 @@ class Human:
         self.author = author
         self.price = price
 
+
     def __str__(self):
         return f"Название книги: {self.title_book} \n" \
                f"Год выпуска: {self.year_release} \n" \
