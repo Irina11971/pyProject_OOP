@@ -1,3 +1,4 @@
+from typing import Dict
 
 # Задание 1.
 # Реализуйте класс «Человек». Необходимо хранить в полях класса: ФИО,
@@ -8,14 +9,14 @@
 class Human:
 
     name: str
-    date_birth: str
+    date_birth: Dict[str, str]
     telephone: str
     country: str
     city: str
-    home_address: str
+    home_address: Dict[str, str]
 
-    def __init__(self, name: str, date_birth: str, telephone: str,
-                 country: str, city: str, home_address: str):
+    def __init__(self, name: str, date_birth: Dict[str, str], telephone: str,
+                 country: str, city: str, home_address: Dict[str, str]):
         """Конструктор класса Human"""
         self.name = name
         self.date_birth = date_birth
@@ -26,18 +27,20 @@ class Human:
 
     def __str__(self):
         return f"ФИО: {self.name} \n" \
-               f"Дата рождения: {self.date_birth} \n" \
+               f"Дата рождения: {list(self.date_birth.values())} \n" \
                f"Телефон: {self.telephone} \n" \
                f"Страна: {self.country} \n" \
                f"Город: {self.city} \n" \
-               f"Домашний адрес: {self.home_address} \n"
+               f"Домашний адрес: {list(self.home_address.values())} \n"
 
 
 def execute_application():
 
 
-    human1 = Human("Караваев Я.Д.", "03.02.1985", "910-634-03-69", "Россия", "Ярославль", "ул. Бабича, д. 16, кв. 5")
-    human2 = Human("Краснов С.Ю.", "25.02.1965", "915-634-10-85", "Россия", "Ярославль", "ул. Космонавтов, д. 1, кв. 9")
+    human1 = Human("Караваев Я.Д.", {"число": 12, "месяц": 11, "год": 1985}, "+7 910-634-03-69", "Россия", "Ярославль",
+                   {"страна": "Россия", "населенный пункт": "Ярославль", "улица": "Кудрявцева", "дом": 5, "квартира": 86})
+    human2 = Human("Краснов С.Ю.", {"число": 3, "месяц": 12, "год": 1998}, "+7 915-634-10-85", "Россия", "Ярославль",
+                   {"страна": "Россия", "населенный пункт": "Ярославль", "улица": "Нахимсона", "дом": 15, "квартира": 8})
     humans = []
     humans.append(human1)
     humans.append(human2)
