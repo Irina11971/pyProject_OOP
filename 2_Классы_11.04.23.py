@@ -5,7 +5,7 @@
 
 class Car:
 
-    def __init__(self, model: str, year_release: int, manufacturer: str, engine_capacity: int, colour: str, price: int):
+    def __init__(self, model: str, year_release: int, manufacturer: str, engine_capacity: float, colour: str, price: int):
         """Конструктор класса Car"""
         self.model = model
         self.year_release = year_release
@@ -25,12 +25,6 @@ class Car:
 
 
 
-
-
-
-
-
-
 # Задание 2.
 # Реализуйте класс «Стадион». Необходимо хранить в полях класса:
 # название стадиона, дату открытия, страну, город, вместимость. Реализуйте
@@ -39,14 +33,16 @@ class Car:
 
 
 
-
-
-
-
-
-
 def execute_application():
 
+    car1 = Car("Volkswagen Caravelle", 2021,"Volkswagen", 2.0, "черный", 4150000)
+    car2 = Car("Suzuki SX4", 2011,"Volkswagen", 1.6, "серебристый", 915000)
+
+    cars = []
+    cars.append(car1)
+    cars.append(car2)
+    for car in cars:
+        print(car)
 
 
 if __name__ == "__main__":
