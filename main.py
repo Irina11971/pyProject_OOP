@@ -1,3 +1,5 @@
+#  fitcha/task1
+
 from typing import Dict
 
 # Задание 1.

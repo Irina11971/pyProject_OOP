@@ -1,3 +1,5 @@
+# fitcha/task2
+
 from typing import Dict
 
 # Задание 1.
@@ -15,7 +17,11 @@ class Car:
         self.manufacturer = manufacturer
         self.engine_capacity = engine_capacity
         self.colour = colour
-        self.price = price
+        if price == None:
+            self.price = "не указана"
+        else:
+            self.price = price
+
 
     def __str__(self):
         return f"Название модели: {self.model} \n" \
@@ -39,7 +45,10 @@ class Stadium:
         self.opening_date = opening_date
         self.country = country
         self.city = city
-        self.number_seats = number_seats
+        if number_seats == None:
+            self.number_seats = "не указана"
+        else:
+            self.number_seats = number_seats
     def __str__(self):
         return f"Название стадиона: {self.name} \n" \
                f"Дата открытия: {list(self.opening_date.values())} \n"\
@@ -55,23 +64,23 @@ def execute_application():
     # Задание 1
 
     car1 = Car("Volkswagen Caravelle", 2021,"Volkswagen", 2.0, "черный", 4150000)
-    car2 = Car("Suzuki SX4", 2011,"Volkswagen", 1.6, "серебристый", 915000)
+    car2 = Car("Suzuki SX4", 2011,"Volkswagen", 1.6, "серебристый")
 
     cars = []
     cars.append(car1)
     cars.append(car2)
     for car in cars:
         print(car)
-
     """
+
     # Задание 2
 
     stadium1 = Stadium("Стадион 1 мая", {"число": 1, "месяц": "мая", "год": 1989}, "Северная Корея",
                        "Пхеньян", 114000)
-    stadium2 = Stadium("Лужники", {"число": 31, "месяц": "июля", "год": 195}, "Россия",
+    stadium2 = Stadium("Лужники", {"число": 31, "месяц": "июля", "год": 1956}, "Россия",
                        "Москва", 76880)
     stadium3 = Stadium("Камп Ноу", {"число": 24, "месяц": "сентября", "год": 1957}, "Испания",
-                       "Барселона", 99354)
+                       "Барселона")
 
     stadiums = []
     stadiums.append(stadium1)
