@@ -47,7 +47,7 @@ class Programmer:
 
 def execute_application():
     programmer = Programmer("Иван", 32, "male", "Python", "Яндекс", 100000)
-    #programmer.set_premium(10)
+    programmer.set_premium(10)
     print(programmer.get_premium())
 
     programmer.age = 21
