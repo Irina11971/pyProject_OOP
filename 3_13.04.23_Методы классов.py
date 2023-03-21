@@ -24,7 +24,7 @@ class Human:
                f"Телефон: {self.telephone} \n" \
                f"Страна: {self.country} \n" \
                f"Город: {self.__city} \n" \
-               f"Домашний адрес: {list(self.home_address.values())} \n"
+               f"Домашний адрес:{list(self.home_address.values())} \n"
 
     @property
     def name(self):
