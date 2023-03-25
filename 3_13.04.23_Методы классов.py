@@ -13,7 +13,7 @@ class Human:
         #Конструктор класса Human
         self.__name = name
         self.__date_birth = date_birth.copy()
-        self.telephone = telephone
+        self.__telephone = telephone
         self.country = country
         self.__city = city
         self.home_address = home_address.copy()
@@ -21,7 +21,7 @@ class Human:
     def __str__(self):
         return f"ФИО: {self.__name} \n" \
                f"Дата рождения: {list(self.__date_birth.values())} \n" \
-               f"Телефон: {self.telephone} \n" \
+               f"Телефон: {self.__telephone} \n" \
                f"Страна: {self.country} \n" \
                f"Город: {self.__city} \n" \
                f"Домашний адрес:{list(self.home_address.values())} \n"
@@ -40,6 +40,13 @@ class Human:
     def date_birth(self, date_birth: Dict[str, str]):
         self.__date_birth = date_birth.copy()
 
+    @property
+    def telephone(self):
+        return self.__telephone
+    
+    @telephone.setter
+    def telephone(self, telephone: str):
+        self.__telephone = telephone
 
 def execute_application():
 
@@ -52,7 +59,7 @@ def execute_application():
     human1.name = "Чернов Я.Д."
     print(human1.name)
 
-    human1.date_birth = ({"число": "1", "месяц": "1", "год": "1985"})  # не работает
+    human1.date_birth = ({"число": "1", "месяц": "1", "год": "1985"})  
     print(human1.date_birth)
 
     human2.name = "Стрельцов О.Н."
@@ -86,7 +93,7 @@ class Book:
         self.__year_release = year_release
         self.publishing_house = publishing_house
         self.genre = genre
-        self.author = author
+        self.__author = author
         self.__price = price
 
     def __str__(self):
@@ -94,7 +101,7 @@ class Book:
                f"Год выпуска: {self.__year_release} \n" \
                f"Издатель: {self.publishing_house} \n" \
                f"Жанр: {self.genre} \n" \
-               f"Автор: {self.author} \n" \
+               f"Автор: {self.__author} \n" \
                f"Цена: {self.__price} \n"
 
 
@@ -113,9 +120,15 @@ class Book:
         self.__year_release = year_release
 
     @property
+    def autor(self):
+        return self.__author
+    @autor.setter
+    def autor(self, autor: str):
+        self.__author = autor
+
+    @property
     def price(self):
         return self.__price
-        
         
     @price.setter
     def price(self, price: float):
@@ -123,11 +136,12 @@ class Book:
 
 
 def execute_application():
-    book1 = Book("Изучаем программирование на Python", 2022, "ООО Издательство 'Эксмо'", "Учебник", "Бэрри Пол", 2564.25)
+    book1 = Book("Изучаем программирование на Python", 1022, "ООО Издательство 'Эксмо'", "Учебник", "Бэрри По", 2564.25)
  
     book1.title_book = "Буратино"
     book1.year_release = 2023
-    book1.price = 2000
+    book1.price = 2022
+    book1.autor = "Бэрри Пол"
 
     print(book1)
 
@@ -135,4 +149,3 @@ def execute_application():
 
 if __name__ == "__main__":
     execute_application()
-"""
