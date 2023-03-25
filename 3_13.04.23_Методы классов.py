@@ -83,8 +83,8 @@ if __name__ == "__main__":
 # название книги, год выпуска, издателя, жанр, автора, цену. Реализуйте
 # конструктор по умолчанию и метод для вывода данных. Реализуйте доступ к
 # отдельным полям класса через методы класса (геттеры и сеттеры).
-"""
 
+"""
 class Book:
     def __init__(self, title_book: str, year_release: int, publishing_house: str,
                  genre: str, author: str, price: float):
@@ -146,6 +146,6 @@ def execute_application():
     print(book1)
 
 
-
 if __name__ == "__main__":
     execute_application()
+"""
