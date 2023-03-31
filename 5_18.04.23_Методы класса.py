@@ -83,11 +83,11 @@ class Human:
         """
         with open(path, 'r', encoding='UTF-8') as file:
             name = file.readline().rstrip('\n')
-            date_birth = file.readline().rstrip('\n')   # ??????????????????????
+            date_birth = file.readline().values().rstrip('\n')   # ??????????????????????
             telephone = file.readline().rstrip('\n')
             country = file.readline().rstrip('\n')
             city = file.readline().rstrip('\n')
-            home_address = file.readline().rstrip('\n') # ????????????????????????
+            home_address = file.readline().values().rstrip('\n') # ????????????????????????
             return cls(name, date_birth, telephone, country, city, home_address)     #??????????????????
 
     @staticmethod
@@ -194,14 +194,13 @@ class Book:
             str - объект класса
         """
         with open(path, 'r', encoding='UTF-8') as file:
-            name = file.readline().rstrip('\n')
             title_book = file.readline().rstrip('\n')
             year_release = int(file.readline().rstrip('\n'))
             publishing_house = file.readline().rstrip('\n')
             genre = file.readline().rstrip('\n')
             author = file.readline().rstrip('\n')
             price = float(file.readline().rstrip('\n'))
-            return cls(name, title_book, year_release, publishing_house, genre, author, price)  # ????????????????
+            return cls(title_book, year_release, publishing_house, genre, author, price)
 
     @staticmethod
     def read_from_file(path: str) -> tuple:
@@ -213,14 +212,13 @@ class Book:
             tuple - объект класса
         """
         with open(path, 'r', encoding='UTF-8') as file:
-            name = file.readline().rstrip('\n')
             title_book = file.readline().rstrip('\n')
             year_release = int(file.readline().rstrip('\n'))
             publishing_house = file.readline().rstrip('\n')
             genre = file.readline().rstrip('\n')
             author = file.readline().rstrip('\n')
             price = float(file.readline().rstrip('\n'))
-            return name, title_book, year_release, publishing_house, genre, author, price
+            return title_book, year_release, publishing_house, genre, author, price
 
 
 def execute_application():
