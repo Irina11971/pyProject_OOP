@@ -1,3 +1,5 @@
+from typing import Dict, Tuple
+
 # Задание 1.
 # Реализуйте в классе «Человек» дополнительный метод класса и
 # статический метод.
@@ -70,8 +72,41 @@ class Human:
     def home_address(self, home_address: Dict[str, str]):
         self.__home_address = home_address.copy()
 
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Считывает объекты класса из файла
 
+        :param path (str): адрес файла
+        :return:
+            str - объект класса # ????????????????????????
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            date_birth = file.readline().rstrip('\n')   # ??????????????????????
+            telephone = file.readline().rstrip('\n')
+            country = file.readline().rstrip('\n')
+            city = file.readline().rstrip('\n')
+            home_address = file.readline().rstrip('\n') # ????????????????????????
+            return cls(name, date_birth, telephone, country, city, home_address)     #??????????????????
 
+    @staticmethod
+    def read_from_file(path: str) -> tuple:
+        """
+        Считывает объекты класса из файла
+
+        :param path (str): адрес файла
+        :return:
+            tuple - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            date_birth = file.readline().rstrip('\n')   #??????????????????????
+            telephone = file.readline().rstrip('\n')
+            country = file.readline().rstrip('\n')
+            city = file.readline().rstrip('\n')
+            home_address = file.readline().rstrip('\n')   # ???????????????
+            return name, date_birth, telephone, country, city, home_address # ???????????????????????
 
 
 
@@ -84,7 +119,7 @@ class Human:
 
 class Book:
     def __init__(self, title_book: str, year_release: int, publishing_house: str,
-                 genre: str, author: str, price: float):
+                 genre: str, author: str, price: float = None):
         #Конструктор класса Book
         self.__title_book = title_book
         self.__year_release = year_release
@@ -149,12 +184,43 @@ class Book:
     def price(self, price: float):
         self.__price = price
 
+    @classmethod
+    def init_from_file2(cls, path: str):
+        """
+        Считывает объекты класса из файла
 
+        :param path (str): адрес сайта
+        :return:
+            str - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            title_book = file.readline().rstrip('\n')
+            year_release = int(file.readline().rstrip('\n'))
+            publishing_house = file.readline().rstrip('\n')
+            genre = file.readline().rstrip('\n')
+            author = file.readline().rstrip('\n')
+            price = float(file.readline().rstrip('\n'))
+            return cls(name, title_book, year_release, publishing_house, genre, author, price)  # ????????????????
 
+    @staticmethod
+    def read_from_file(path: str) -> tuple:
+        """
+        Считывает объекты класса из файла
 
-
-
-
+        :param path (str): адрес файла
+        :return:
+            tuple - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            title_book = file.readline().rstrip('\n')
+            year_release = int(file.readline().rstrip('\n'))
+            publishing_house = file.readline().rstrip('\n')
+            genre = file.readline().rstrip('\n')
+            author = file.readline().rstrip('\n')
+            price = float(file.readline().rstrip('\n'))
+            return name, title_book, year_release, publishing_house, genre, author, price
 
 
 def execute_application():
