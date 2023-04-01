@@ -177,73 +177,73 @@ class Stadium:
         self.__number_seats = number_seats
 
 
-    # @classmethod
-    # def init_from_file(cls, path: str):
-    #     """
-    #     Считывает объекты класса из файла
-    #
-    #     :param path (str): адрес сайта
-    #     :return:
-    #         str - объект класса
-    #     """
-    #     with open(path, 'r', encoding='UTF-8') as file:
-    #         name = file.readline().rstrip('\n')
-    #         opening_date = Dict[str, str]           #??????????????????????
-    #         country = file.readline().rstrip('\n')
-    #         city = file.readline().rstrip('\n')
-    #         number_seats = int(file.readline().rstrip('\n'))
-    #         return cls(name, opening_date, country, city, number_seats)
-    #
-    #
-    # @staticmethod
-    # def read_from_file(path: str) -> tuple:
-    #     """
-    #     Считывает объекты класса из файла
-    #
-    #     :param path (str): адрес файла
-    #     :return:
-    #         tuple - объект класса
-    #     """
-    #     with open(path, 'r', encoding='UTF-8') as file:
-    #         name = file.readline().rstrip('\n')
-    #         opening_date = Dict[str, str]              #?????????????????????
-    #         country = file.readline().rstrip('\n')
-    #         city = file.readline().rstrip('\n')
-    #         number_seats = int(file.readline().rstrip('\n'))
-    #
-    #         return name, opening_date, country, city, number_seats
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Считывает объекты класса из файла
+
+        :param path (str): адрес сайта
+        :return:
+            str - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            opening_date_text = file.readline().rstrip('\n').split('.')
+            opening_date = dict()
+            opening_date["число"] = opening_date_text[0]
+            opening_date["месяц"] = opening_date_text[1]
+            opening_date["год"] = opening_date_text[2]
+            country = file.readline().rstrip('\n')
+            city = file.readline().rstrip('\n')
+            number_seats = int(file.readline().rstrip('\n'))
+            return cls(name, opening_date, country, city, number_seats)
+
+
+    @staticmethod
+    def read_from_file(path: str) -> tuple:
+        """
+        Считывает объекты класса из файла
+
+        :param path (str): адрес файла
+        :return:
+            tuple - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            opening_date_text = file.readline().rstrip('\n').split('.')
+            opening_date = dict()
+            opening_date["число"] = opening_date_text[0]
+            opening_date["месяц"] = opening_date_text[1]
+            opening_date["год"] = opening_date_text[2]
+            country = file.readline().rstrip('\n')
+            city = file.readline().rstrip('\n')
+            number_seats = int(file.readline().rstrip('\n'))
+            return name, opening_date, country, city, number_seats
 
 
 def execute_application():
-    # Задание 1
 
+    # Задание 1
+    #Реализация через метод класса
+    car = Car.init_from_file("file_car.txt")
+    print(car)
+
+    # Реализация через статический метод
     data = Car.read_from_file("file_car.txt")
     car = Car(*data)
     print(car)
 
-    car = Car.init_from_file("file_car.txt")
-    print(car)
-
 
     # Задание 2
+    # Реализация через метод класса
+    stadium = Stadium.init_from_file("file_stadium.txt")
+    print(stadium)
 
-    # stadium1 = Stadium("Стадион 1 мая", {"число": 1, "месяц": "мая", "год": 1989}, "Северная Корея",
-    #                    "Пхеньян", 114000)
-    # stadium2 = Stadium("Лужники", {"число": 31, "месяц": "июля", "год": 1956}, "Россия",
-    #                    "Москва", 76880)
-    # stadium3 = Stadium("Камп Ноу", {"число": 24, "месяц": "сентября", "год": 1957}, "Испания",
-    #                    "Барселона")
-    #
-    # stadium1.name = "Олимпийский"
-    # stadium1.opening_date = {"число": 1, "месяц": "января", "год": 1111}
-    #
-    # stadiums = []
-    # stadiums.append(stadium1)
-    # stadiums.append(stadium2)
-    # stadiums.append(stadium3)
-    #
-    # for stadium in stadiums:
-    #     print(stadium)
+    #Реализация через статический метод
+    data = Stadium.read_from_file("file_stadium.txt")
+    stadium = Stadium(*data)
+    print(stadium)
+
 
 
 if __name__ == "__main__":
