@@ -7,14 +7,14 @@ from typing import Dict, Tuple
 class Human:
 
     def __init__(self, name: str, date_birth: Dict[str, str], telephone: str,
-                 country: str, city: str, home_address: Dict[str, str]):
+                 country: str, city: str, home_address: Dict[str, str] = None):
         #Конструктор класса Human
         self.__name = name
         self.__date_birth = date_birth.copy()
         self.__telephone = telephone
         self.__country = country
         self.__city = city
-        self.home_address = home_address.copy()
+        #self.home_address = home_address.copy()
 
     def __str__(self):
         return f"ФИО: {self.__name} \n" \
@@ -72,24 +72,33 @@ class Human:
     def home_address(self, home_address: Dict[str, str]):
         self.__home_address = home_address.copy()
 
-    @classmethod
-    def init_from_file(cls, path: str):
-        """
-        Считывает объекты класса из файла
-
-        :param path (str): адрес файла
-        :return:
-            str - объект класса # ????????????????????????
-        """
-        with open(path, 'r', encoding='UTF-8') as file:
-            name = file.readline().rstrip('\n')
-            date_birth = file.readline().values().rstrip('\n')   # ??????????????????????
-            telephone = file.readline().rstrip('\n')
-            country = file.readline().rstrip('\n')
-            city = file.readline().rstrip('\n')
-            home_address = file.readline().values().rstrip('\n') # ????????????????????????
-            return cls(name, date_birth, telephone, country, city, home_address)     #??????????????????
-
+    # @classmethod
+    # def init_from_file(cls, path: str):
+    #     """
+    #     Считывает объекты класса из файла
+    #
+    #     :param path (str): адрес файла
+    #     :return:
+    #         str - объект класса
+    #     """
+    #     with open(path, 'r', encoding='UTF-8') as file:
+    #         name = file.readline().rstrip('\n')
+    #         date_birth_text = file.readline().rstrip('\n').split('.')
+    #         date_birth = dict()
+    #         date_birth["число"] = date_birth_text[0]
+    #         date_birth["месяц"] = date_birth_text[1]
+    #         date_birth["год"] = date_birth_text[2]
+    #         telephone = file.readline().rstrip('\n')
+    #         country = file.readline().rstrip('\n')
+    #         city = file.readline().rstrip('\n')
+    #         home_address_text = file.readline().rstrip('\n').split(",")
+    #         home_address = dict
+    #         home_address["страна"] = home_address_text[0]            # ??????????????????????????????????
+    #         home_address["город"] = home_address_text[1]
+    #         home_address["улица"] = home_address_text[2]
+    #         home_address["дом"] = home_address_text[3]
+    #         home_address["квартира"] = home_address_text[4]
+    #         return cls(name, date_birth, telephone, country, city, home_address)
     @staticmethod
     def read_from_file(path: str) -> tuple:
         """
@@ -101,14 +110,23 @@ class Human:
         """
         with open(path, 'r', encoding='UTF-8') as file:
             name = file.readline().rstrip('\n')
-            date_birth = file.readline().rstrip('\n')   #??????????????????????
+            date_birth_text = file.readline().rstrip('\n').split('.')
+            date_birth = dict()
+            date_birth["число"] = date_birth_text[0]
+            date_birth["месяц"] = date_birth_text[1]
+            date_birth["год"] = date_birth_text[2]
             telephone = file.readline().rstrip('\n')
             country = file.readline().rstrip('\n')
             city = file.readline().rstrip('\n')
-            home_address = file.readline().rstrip('\n')   # ???????????????
-            return name, date_birth, telephone, country, city, home_address # ???????????????????????
+            home_address_text = file.readline().rstrip('\n').split()
+            home_address = dict
+            home_address["страна"] = home_address_text[0]                 # ????????????????????????????????
+            home_address["город"] = home_address_text[1]
+            home_address["улица"] = home_address_text[2]
+            home_address["дом"] = home_address_text[3]
+            home_address["квартира"] = home_address_text[4]
 
-
+            return name, date_birth, telephone, country, city, home_address
 
 
 
@@ -222,33 +240,17 @@ class Book:
 
 
 def execute_application():
+
     # Задание 1
+
+    human = Human.read_from_file("file_human.txt")
+    print(human)
 
     text = Human.init_from_file("file_human.txt")
     human = Human(text)
     print(human)
 
-    # human1 = Human("Караваев Я.Д.", {"число": "12", "месяц": "11", "год": "1985"}, "+7 910-634-03-69", "Россия",
-    #                "Ярославль", {"страна": "Россия", "населенный пункт": "Ярославль", "улица": "Кудрявцева", "дом": 5,
-    #                 "квартира": 86})
-    # human2 = Human("Краснов С.Ю.", {"число": "3", "месяц": "12", "год": "1998"}, "+7 915-634-10-85", "Россия",
-    #                "Ярославль",
-    #                {"страна": "Россия", "населенный пункт": "Ярославль", "улица": "Нахимсона", "дом": 15,
-    #                 "квартира": 8})
-    #
-    # human1.name = "Чернов Я.Д."
-    # human1.date_birth = ({"число": "1", "месяц": "1", "год": "1985"})
-    # human1.home_address = (
-    #     {"страна": "Россия", "населенный пункт": "Архангельск", "улица": "Харитонова", "дом": 1, "квартира": 1})
-    #
-    # human2.name = "Стрельцов О.Н."
-    # human2.city = "Париж"
-    #
-    # humans = []
-    # humans.append(human1)
-    # humans.append(human2)
-    # for human in humans:
-    #     print(human)
+
 
     # Задание 2
     #Создание экземпляра класса Book с использованием staticmethod
