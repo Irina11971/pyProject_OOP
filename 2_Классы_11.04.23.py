@@ -43,7 +43,7 @@ class Stadium:
     def __init__(self,name: str, opening_date: Dict[str, str], country: str, city: str, number_seats: int = None):
         """Конструктор класса Stadium"""
         self.name = name
-        self.opening_date = opening_date
+        self.opening_date = opening_date.copy()
         self.country = country
         self.city = city
         if number_seats == None:
