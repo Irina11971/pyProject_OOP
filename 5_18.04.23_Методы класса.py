@@ -14,7 +14,7 @@ class Human:
         self.__telephone = telephone
         self.__country = country
         self.__city = city
-        #self.home_address = home_address.copy()
+        self.__home_address = home_address.copy()
 
     def __str__(self):
         return f"ФИО: {self.__name} \n" \
@@ -72,33 +72,34 @@ class Human:
     def home_address(self, home_address: Dict[str, str]):
         self.__home_address = home_address.copy()
 
-    # @classmethod
-    # def init_from_file(cls, path: str):
-    #     """
-    #     Считывает объекты класса из файла
-    #
-    #     :param path (str): адрес файла
-    #     :return:
-    #         str - объект класса
-    #     """
-    #     with open(path, 'r', encoding='UTF-8') as file:
-    #         name = file.readline().rstrip('\n')
-    #         date_birth_text = file.readline().rstrip('\n').split('.')
-    #         date_birth = dict()
-    #         date_birth["число"] = date_birth_text[0]
-    #         date_birth["месяц"] = date_birth_text[1]
-    #         date_birth["год"] = date_birth_text[2]
-    #         telephone = file.readline().rstrip('\n')
-    #         country = file.readline().rstrip('\n')
-    #         city = file.readline().rstrip('\n')
-    #         home_address_text = file.readline().rstrip('\n').split(",")
-    #         home_address = dict
-    #         home_address["страна"] = home_address_text[0]            # ??????????????????????????????????
-    #         home_address["город"] = home_address_text[1]
-    #         home_address["улица"] = home_address_text[2]
-    #         home_address["дом"] = home_address_text[3]
-    #         home_address["квартира"] = home_address_text[4]
-    #         return cls(name, date_birth, telephone, country, city, home_address)
+    @classmethod
+    def init_from_file(cls, path: str):
+        """
+        Считывает объекты класса из файла
+
+        :param path (str): адрес файла
+        :return:
+            str - объект класса
+        """
+        with open(path, 'r', encoding='UTF-8') as file:
+            name = file.readline().rstrip('\n')
+            date_birth_text = file.readline().rstrip('\n').split('.')
+            date_birth = dict()
+            date_birth["число"] = date_birth_text[0]
+            date_birth["месяц"] = date_birth_text[1]
+            date_birth["год"] = date_birth_text[2]
+            telephone = file.readline().rstrip('\n')
+            country = file.readline().rstrip('\n')
+            city = file.readline().rstrip('\n')
+            home_address_text = file.readline().rstrip('\n').split(",")
+            home_address = dict()
+            home_address["страна"] = home_address_text[0]
+            home_address["город"] = home_address_text[1]
+            home_address["улица"] = home_address_text[2]
+            home_address["дом"] = home_address_text[3]
+            home_address["квартира"] = home_address_text[4]
+            return cls(name, date_birth, telephone, country, city, home_address)
+
     @staticmethod
     def read_from_file(path: str) -> tuple:
         """
@@ -118,9 +119,9 @@ class Human:
             telephone = file.readline().rstrip('\n')
             country = file.readline().rstrip('\n')
             city = file.readline().rstrip('\n')
-            home_address_text = file.readline().rstrip('\n').split()
-            home_address = dict
-            home_address["страна"] = home_address_text[0]                 # ????????????????????????????????
+            home_address_text = file.readline().rstrip('\n').split(',')
+            home_address = dict()
+            home_address["страна"] = home_address_text[0]
             home_address["город"] = home_address_text[1]
             home_address["улица"] = home_address_text[2]
             home_address["дом"] = home_address_text[3]
@@ -243,17 +244,25 @@ def execute_application():
 
     # Задание 1
 
-    human = Human.read_from_file("file_human.txt")
+    # Задание 1
+    # Создание экземпляра класса Human с использованием classmethod
+    human = Human.init_from_file("file_human.txt")
     print(human)
 
-    text = Human.init_from_file("file_human.txt")
-    human = Human(text)
+    # Создание экземпляра класса Human с использованием staticmethod
+
+    data = Human.read_from_file('file_human.txt')
+    human = Human(*data)
     print(human)
-
-
 
     # Задание 2
-    #Создание экземпляра класса Book с использованием staticmethod
+
+    # Создание экземпляра класса Book с использованием classmethod
+
+    book = Book.init_from_file('file.txt')
+    print(book)
+
+    # Создание экземпляра класса Book с использованием staticmethod
 
     data = Book.read_from_file("file.txt")
     book = Book(*data)
